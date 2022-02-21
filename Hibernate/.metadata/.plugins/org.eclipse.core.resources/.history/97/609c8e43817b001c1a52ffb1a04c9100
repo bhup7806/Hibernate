@@ -1,0 +1,19 @@
+package in.co.rays.inher;
+
+public class Cheque extends Payment {
+	
+	private  int Cheque;
+	
+	public Cheque() {}
+
+	public int getCheque() {
+		return Cheque;
+	}
+
+	public void setCheque(int cheque) {
+		this.Cheque = cheque;
+	}
+	
+	
+
+}

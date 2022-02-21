@@ -1,0 +1,5 @@
+package in.co.rays.tps;
+
+public class Payment {
+
+}

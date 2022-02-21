@@ -1,0 +1,18 @@
+package in.co.rays.inher;
+
+public class ChequeNo {
+	
+	public ChequeNo() {}
+
+	public int getChequeNo() {
+		return chequeNo;
+	}
+
+	public void setChequeNo(int chequeNo) {
+		this.chequeNo = chequeNo;
+	}
+	
+	
+}
+
+}

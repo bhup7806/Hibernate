@@ -1,0 +1,207 @@
+package in.co.rays.Hibernate.TestClass;
+
+import java.util.Iterator;
+import java.util.List;
+
+import javax.persistence.criteria.From;
+
+import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
+
+import in.co.rays.Hibernate.User;
+
+public class TestUser {
+	
+	public static void main(String[] args) {
+		 //testAdd();
+		//testUpdate();
+		 //testdelete();
+		   //testGet();
+		//   testList();
+		// testlist1();
+		//testcriteria();
+		// testuserHql();
+		   TestUserRestrictions();
+
+	}
+
+
+	  private static void TestUserRestrictions() {
+		
+		  SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+			Session s = sessionFactory.openSession();
+			
+			 Criteria criteria = s.createCriteria(User.class);
+			 criteria.add(Restrictions.like("fname", "abhi"));
+			 criteria.add(Restrictions.like("id", 2));
+			// criteria.add(Restrictions.like("pwd", 2));
+			 List list = criteria.list();
+			 Iterator it = list.iterator();
+			 
+			while (it.hasNext()) {
+				User u = (User)it.next();
+				 System.out.println(u.getId()); 
+				  System.out.println(u.getFname());
+				  System.out.println(u.getLname()); 
+				  System.out.println(u.getUsername());
+				  System.out.println(u.getPwd());
+				  
+			}
+		
+	}
+
+
+	private static void testuserHql() {
+				SessionFactory sessionfactory = new Configuration().configure().buildSessionFactory();
+				Session s = sessionfactory.openSession();
+				Query q = s.createQuery("select u.FNAME from User u");
+				List list = q.list();
+				Iterator it = list.iterator();
+				while (it.hasNext()) {
+					 Object  u = (Object) it.next();
+					System.out.println(u);
+					
+					
+				}
+			s.close();	
+		}
+
+	private static void testcriteria() {
+	
+		  SessionFactory sessionFactory = new
+				  Configuration().configure().buildSessionFactory(); 
+		  Session s =sessionFactory.openSession();
+				  Query q = s.createQuery("from User");
+				  Criteria criteria = s.createCriteria(User.class);
+				  List list = criteria.list();
+				  Iterator it = list.iterator();
+				 while (it.hasNext()) {
+					User u = (User) it.next();
+			
+				  System.out.println(u.getId());
+				  System.out.println(u.getFname());
+				  System.out.println(u.getLname());
+				  System.out.println(u.getPwd());
+				  
+				 } 
+	}
+	
+	  private static void testlist1(){ 
+		  
+		  SessionFactory sessionFactory = new
+	  Configuration().configure().buildSessionFactory(); Session s =
+	  sessionFactory.openSession();
+	  
+	  Query q= s.createQuery("select u.id,u.fname from User u");
+	  List list =q.list(); 
+	  Iterator<User> it =list.iterator();
+	  
+	  while (it.hasNext()) { 
+		 User user= (User)it.next();
+	  
+	  System.out.println(user.getFname()); }
+	  
+	  }
+	 
+	  private static void testList() {
+	  
+	  SessionFactory sessionFactory = new
+	  Configuration().configure().buildSessionFactory(); Session s =
+	  sessionFactory.openSession();
+	  
+	  Query q= s.createQuery("from User"); 
+	  List list = q.list();
+	  Iterator it = list.iterator();
+	  
+	  while(it.hasNext()) { 
+		  User u = (User)it.next();
+	  System.out.println(u.getId()); 
+	  System.out.println(u.getFname());
+	  System.out.println(u.getLname()); 
+	  System.out.println(u.getUsername());
+	  System.out.println(u.getPwd());
+	  
+	  } s.close();
+	  
+	  }
+	
+	  private static void testGet() {
+	  
+	  SessionFactory sessionFactory = new
+	  Configuration().configure().buildSessionFactory(); Session s =
+	  sessionFactory.openSession();
+	  
+	  User u = (User)s.get(User.class,2);
+	  System.out.println(u.getId()); 
+	  System.out.println(u.getFname());
+	  System.out.println(u.getLname()); 
+	  System.out.println(u.getUsername());
+	  System.out.println(u.getPwd());
+	  
+	  s.close();
+	  
+	  
+	  }
+	 
+	  
+	  private static void testdelete() { 
+		  
+		  User u= new User(); 
+		  u.setId(6);
+	  SessionFactory sessionFactory = new
+	  Configuration().configure().buildSessionFactory(); Session s =
+	             sessionFactory.openSession(); 
+	  
+	  Transaction tx = s.beginTransaction();
+	  
+	  s.delete(u); 
+	  tx.commit(); 
+	  s.close();
+	  
+	  }
+	
+	  private static void testUpdate() {
+	  
+	   User u= new User();
+	   u.setId(1);
+	  u.setFname("lavish"); 
+	  u.setLname("patidar");
+	  u.setUsername("lavupatidar");
+	  u.setPwd("lavish123");
+	  
+	  SessionFactory sessionFactory = new
+	  Configuration().configure().buildSessionFactory(); Session s =
+	  sessionFactory.openSession(); 
+	  
+	  Transaction tx = s.beginTransaction();
+	  
+	  s.update(u); 
+	  tx.commit(); 
+	  s.close();
+	  
+	  }
+	  
+	 
+	private static void testAdd() {
+		User u = new User();
+		u.setFname("chota");
+		u.setLname("nana");
+		u.setUsername("chotanana");
+		u.setPwd("chota123");
+
+		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		Session s = sessionFactory.openSession();
+		Transaction tx = s.beginTransaction();
+
+		s.save(u);
+		tx.commit();
+		s.close();
+
+	}
+
+}

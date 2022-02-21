@@ -1,0 +1,41 @@
+package in.co.rays.Hibernate.TestClass;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import in.co.rays.Hibernate.Cheque;
+import in.co.rays.Hibernate.CreditCardPayment;
+
+public class TestPayment {
+	
+	public static void main (String[] args) {
+
+	CreditCardPayment card = new CreditCardPayment();
+	card.setId(1);
+	card.setAmount(12000);
+	card.setCcType("Visa");
+	
+	Cheque ch = new Cheque();
+	ch.setId(2);
+	ch.setAmount(15000);
+	ch.setChequeNo(45656);
+	
+	SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+	Session s = sessionFactory.openSession();
+	
+	Transaction tx = s.beginTransaction();
+	s.save(card);
+	s.save(ch);
+	 tx.commit();
+	 s.close();
+	 
+	 System.out.println("payment done");
+	 
+	
+	}
+	
+}
+
+

@@ -1,0 +1,25 @@
+package in.co.rays.Hibernate;
+
+public class Cheque  extends payment{
+	
+	private int chequeNo;
+	private  String BankName;
+	
+	public Cheque()  {}
+	
+	public int getChequeNo() {
+		return chequeNo;
+	}
+	public void setChequeNo(int chequeNo) {
+		this.chequeNo = chequeNo;
+	}
+	public String getBankName() {
+		return BankName;
+	}
+	public void setBankName(String bankName) {
+		BankName = bankName;
+	}
+	
+	
+
+}

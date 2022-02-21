@@ -1,0 +1,16 @@
+package in.co.rays.Hibernate;
+
+public class CreditCardPayment  extends payment{
+
+	private String ccType;
+
+	  public  CreditCardPayment() {}
+	public String getCcType() {
+		return ccType;
+	}
+
+	public void setCcType(String ccType) {
+		this.ccType = ccType;
+	}
+	
+}

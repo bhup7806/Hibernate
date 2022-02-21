@@ -1,0 +1,9 @@
+package in.co.rays.Hibernate;
+
+public class payment {
+	private int id;
+	private int amount;
+	private String paymentType;
+	
+
+}

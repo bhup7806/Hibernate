@@ -1,0 +1,8 @@
+package in.co.rays.inher;
+
+public class ChequeNo  extends Payment{
+
+	private int  ChequeNo;
+	
+	
+	

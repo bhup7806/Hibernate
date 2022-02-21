@@ -1,0 +1,7 @@
+private String Name;
+private String Surname;
+private String Gender;
+private Date Date_of_birth;
+private int Mobile_no;
+private String Email;
+private String pwd;
